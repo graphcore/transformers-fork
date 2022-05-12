@@ -28,8 +28,12 @@ import numpy as np
 import tensorflow as tf
 from tensorflow.python.keras import backend as K
 from tensorflow.python.keras.engine import data_adapter
-from tensorflow.python.keras.engine.keras_tensor import KerasTensor
 from tensorflow.python.keras.saving import hdf5_format
+
+if tf.__version__ < "2.6":
+    from tensorflow.python.keras.engine.keras_tensor import KerasTensor
+else:
+    from keras.engine.keras_tensor import KerasTensor
 
 from huggingface_hub import Repository, list_repo_files
 from requests import HTTPError
